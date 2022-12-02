@@ -6,6 +6,12 @@ enum Hand {
   Scissors = 3,
 }
 
+enum Result {
+  Win = 6,
+  Draw = 3,
+  Lose = 0,
+}
+
 const Mapping = {
   A: Hand.Rock,
   B: Hand.Paper,
@@ -21,7 +27,7 @@ const input = readFileSync('input.txt', 'utf-8')
   .map((group) => group.split(' ').map((item) => Mapping[item] as Hand))
   .map(([opponent, player]) => {
     if (opponent === player) {
-      return 3 + player;
+      return Result.Draw + player;
     }
 
     if (
@@ -29,10 +35,10 @@ const input = readFileSync('input.txt', 'utf-8')
       (opponent === Hand.Paper && player === Hand.Scissors) ||
       (opponent === Hand.Scissors && player === Hand.Rock)
     ) {
-      return 6 + player;
+      return Result.Win + player;
     }
 
-    return 0 + player;
+    return Result.Lose + player;
   })
   .reduce((prev, acc) => prev + acc);
 
