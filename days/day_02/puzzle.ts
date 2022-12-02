@@ -10,19 +10,21 @@ enum Result {
   Lose = 0,
 }
 
-const MappingPart1 = {
+const Mapping = {
   A: Hand.Rock,
   B: Hand.Paper,
   C: Hand.Scissors,
+} as const;
+
+const MappingPart1 = {
+  ...Mapping,
   X: Hand.Rock,
   Y: Hand.Paper,
   Z: Hand.Scissors,
 } as const;
 
 const MappingPart2 = {
-  A: Hand.Rock,
-  B: Hand.Paper,
-  C: Hand.Scissors,
+  ...Mapping,
   X: Result.Lose,
   Y: Result.Draw,
   Z: Result.Win,
