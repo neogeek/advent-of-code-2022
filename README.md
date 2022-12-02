@@ -3,7 +3,7 @@
 ## Day
 
 - [x] [Day 1](days/day_1) ⭐️
-- [ ] [Day 2](days/day_2)
+- [x] [Day 2](days/day_2) ⭐️
 - [ ] [Day 3](days/day_3)
 - [ ] [Day 4](days/day_4)
 - [ ] [Day 5](days/day_5)
