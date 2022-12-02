@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+
+      - name: Update NPM to latest
+        run: npm install npm@latest -g
+
+      - name: Print Node.js and NPM version
+        run: |
+          node -v
+          npm -v
+
+      - name: Install dependencies for all packages
+        run: npm ci
+
+      - name: Run tests
+        timeout-minutes: 5
+        run: npm test
