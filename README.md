@@ -2,15 +2,15 @@
 
 ## Day
 
-- [x] [Day 1](days/day_1) ⭐️
-- [x] [Day 2](days/day_2) ⭐️
-- [ ] [Day 3](days/day_3)
-- [ ] [Day 4](days/day_4)
-- [ ] [Day 5](days/day_5)
-- [ ] [Day 6](days/day_6)
-- [ ] [Day 7](days/day_7)
-- [ ] [Day 8](days/day_8)
-- [ ] [Day 9](days/day_9)
+- [x] [Day 1](days/day_01) ⭐️
+- [x] [Day 2](days/day_02) ⭐️
+- [ ] [Day 3](days/day_03)
+- [ ] [Day 4](days/day_04)
+- [ ] [Day 5](days/day_05)
+- [ ] [Day 6](days/day_06)
+- [ ] [Day 7](days/day_07)
+- [ ] [Day 8](days/day_08)
+- [ ] [Day 9](days/day_09)
 - [ ] [Day 10](days/day_10)
 - [ ] [Day 11](days/day_11)
 - [ ] [Day 12](days/day_12)

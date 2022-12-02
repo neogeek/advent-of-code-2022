@@ -1,9 +1,12 @@
 #!/bin/bash
 
 for NUM in {1..25}; do
-    mkdir -p "days/day_${NUM}"
 
-    printf "# Day ${NUM}\n\n<https://adventofcode.com/2022/day/${NUM}>\n" >"days/day_${NUM}/README.md"
+    FORMATTED_NUM=$(printf %02d ${NUM})
 
-    echo "- [ ] [Day ${NUM}](days/day_${NUM})" >>README.md
+    mkdir -p "days/day_${FORMATTED_NUM}"
+
+    printf "# Day ${NUM}\n\n<https://adventofcode.com/2022/day/${NUM}>\n" >"days/day_${FORMATTED_NUM}/README.md"
+
+    echo "- [ ] [Day ${NUM}](days/day_${FORMATTED_NUM})" >>README.md
 done

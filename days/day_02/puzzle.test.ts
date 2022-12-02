@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 
 import { calculatePart1, calculatePart2 } from './puzzle';
 
-const example = readFileSync('days/day_2/example.txt', 'utf-8');
+const example = readFileSync('days/day_02/example.txt', 'utf-8');
 
 describe('day 2', () => {
   describe('part 1', () => {
