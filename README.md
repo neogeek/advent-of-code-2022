@@ -1,7 +1,8 @@
 # [Advent of Code 2022](https://adventofcode.com/2022)
 
 ## Day
-- [ ] [Day 1](days/day_1)
+
+- [x] [Day 1](days/day_1) ⭐️
 - [ ] [Day 2](days/day_2)
 - [ ] [Day 3](days/day_3)
 - [ ] [Day 4](days/day_4)
