@@ -13,6 +13,10 @@ const input = readFileSync('input.txt', 'utf-8')
   .sort((a, b) => a.total - b.total)
   .reverse();
 
-console.log(input[0]);
+console.log('\n===== Day 1 =====\n');
 
-console.log(input.slice(0, 3).reduce((prev, acc) => prev + acc.total, 0));
+console.log(`Part 1: ${input[0].total}`);
+
+console.log(
+  `Part 2: ${input.slice(0, 3).reduce((prev, acc) => prev + acc.total, 0)}`
+);
