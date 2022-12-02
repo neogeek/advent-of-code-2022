@@ -1,5 +1,7 @@
 # [Advent of Code 2022](https://adventofcode.com/2022)
 
+[![Tests](https://github.com/neogeek/advent-of-code-2022/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/neogeek/advent-of-code-2022/actions/workflows/test.workflow.yml)
+
 ## Day
 
 - [x] [Day 1](days/day_01) ⭐️
