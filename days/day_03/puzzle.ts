@@ -20,3 +20,7 @@ export const calculatePart1 = (input: string) => {
     })
     .reduce((prev, acc) => prev + acc);
 };
+
+export const calculatePart2 = (input: string) => {
+  return 0;
+};
