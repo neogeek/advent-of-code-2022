@@ -4,5 +4,5 @@
     "module": "esnext",
     "esModuleInterop": true
   },
-  "include": ["*.ts"]
+  "include": ["days/**/*.ts", "utils/*.ts"]
 }
