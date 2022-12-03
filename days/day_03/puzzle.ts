@@ -1,3 +1,5 @@
+import { chunk } from '../../utils/array.js';
+
 const letters = new Array(26)
   .fill(0)
   .map((_, n) => String.fromCharCode(97 + n));
@@ -9,11 +11,10 @@ export const calculatePart1 = (input: string) => {
     .trim()
     .split(/\n/)
     .map(group => {
-      const array1 = group.slice(0, group.length / 2).split('');
-      const array2 = group.slice(group.length / 2).split('');
+      const arrays = chunk(group.split(''), group.length / 2);
 
       const match = Array.from(
-        new Set(array1.filter(item => array2.includes(item)))
+        new Set(arrays[0].filter(item => arrays[1].includes(item)))
       );
 
       return map.indexOf(match[0]) + 1;
