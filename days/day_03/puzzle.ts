@@ -23,5 +23,21 @@ export const calculatePart1 = (input: string) => {
 };
 
 export const calculatePart2 = (input: string) => {
-  return 0;
+  return chunk(input.trim().split(/\n/), 3)
+    .map(groups => {
+      const match = Array.from(
+        new Set(
+          groups[0]
+            .split('')
+            .filter(
+              item =>
+                groups[1].split('').includes(item) &&
+                groups[2].split('').includes(item)
+            )
+        )
+      );
+
+      return map.indexOf(match[0]) + 1;
+    })
+    .reduce((prev, acc) => prev + acc);
 };
