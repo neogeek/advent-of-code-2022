@@ -1,13 +1,13 @@
 # [Advent of Code 2022](https://adventofcode.com/2022)
 
 [![Tests](https://github.com/neogeek/advent-of-code-2022/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/neogeek/advent-of-code-2022/actions/workflows/test.workflow.yml)
-![](https://img.shields.io/badge/advent%20of%20code%202022-5%E2%AD%90%EF%B8%8F-brightgreen)
+![](https://img.shields.io/badge/advent%20of%20code%202022-6%E2%AD%90%EF%B8%8F-brightgreen)
 
 ## Day
 
 - [x] [Day 1](days/day_01) ⭐️
 - [x] [Day 2](days/day_02) ⭐️
-- [x] [Day 3](days/day_03)
+- [x] [Day 3](days/day_03) ⭐️
 - [ ] [Day 4](days/day_04)
 - [ ] [Day 5](days/day_05)
 - [ ] [Day 6](days/day_06)
