@@ -10,7 +10,7 @@
     "typescript": "4.9.3"
   },
   "scripts": {
-    "start": "find days -name index.ts -exec node --loader ts-node/esm {} \\;",
+    "start": "./bin/start.sh",
     "test": "jest"
   },
   "private": true
