@@ -12,7 +12,7 @@ describe('day 4', () => {
   });
   describe('part 2', () => {
     it('returns the expected result', () => {
-      expect(calculatePart2(example)).toBe(1);
+      expect(calculatePart2(example)).toBe(4);
     });
   });
 });
