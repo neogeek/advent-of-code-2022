@@ -10,3 +10,6 @@ export const chunk = <T>(array: T[], size = 1) =>
 
     return prev;
   }, [] as T[][]);
+
+export const contains = <T>(array1: T[], array2: T[]) =>
+  array2.every(item => array1.includes(item));
