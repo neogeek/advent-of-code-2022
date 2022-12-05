@@ -1,9 +1,7 @@
-export const calculatePart1 = (input: string) => {
-  const [inputStacks, inputInstructions] = input.trimEnd().split('\n\n');
-
+const createStacksFromInput = (input: string) => {
   const stacks = [];
 
-  inputStacks
+  input
     .replace(/[ ]{3} /g, '[-]')
     .replace(/[ ]+/g, '')
     .split('\n')
@@ -22,13 +20,29 @@ export const calculatePart1 = (input: string) => {
       })
     );
 
-  const instructions = inputInstructions.split('\n');
+  return stacks;
+};
 
-  instructions.map(line => {
+const createInstructionsFromInput = (input: string) => {
+  const instructions = input.split('\n');
+
+  return instructions.map(line => {
     const [count, from, to] = line
       .match(/[0-9]+/g)
       .map(item => parseInt(item, 10));
 
+    return { count, from, to };
+  });
+};
+
+export const calculatePart1 = (input: string) => {
+  const [inputStacks, inputInstructions] = input.trimEnd().split('\n\n');
+
+  const stacks = createStacksFromInput(inputStacks);
+
+  const instructions = createInstructionsFromInput(inputInstructions);
+
+  instructions.map(({ count, from, to }) => {
     for (let i = 0; i < count; i += 1) {
       const pickedup = stacks[from - 1].shift();
 
@@ -42,34 +56,11 @@ export const calculatePart1 = (input: string) => {
 export const calculatePart2 = (input: string) => {
   const [inputStacks, inputInstructions] = input.trimEnd().split('\n\n');
 
-  const stacks = [];
+  const stacks = createStacksFromInput(inputStacks);
 
-  inputStacks
-    .replace(/[ ]{3} /g, '[-]')
-    .replace(/[ ]+/g, '')
-    .split('\n')
-    .slice(0, -1)
-    .reverse()
-    .map(line => line.replace(/^\[|\]$/g, '').split(']['))
-    .map(items =>
-      items.map((item, index) => {
-        if (item !== '-') {
-          if (!Array.isArray(stacks[index])) {
-            stacks[index] = [];
-          }
+  const instructions = createInstructionsFromInput(inputInstructions);
 
-          stacks[index].unshift(item);
-        }
-      })
-    );
-
-  const instructions = inputInstructions.split('\n');
-
-  instructions.map(line => {
-    const [count, from, to] = line
-      .match(/[0-9]+/g)
-      .map(item => parseInt(item, 10));
-
+  instructions.map(({ count, from, to }) => {
     const pickedup = stacks[from - 1].splice(0, count);
 
     stacks[to - 1] = [...pickedup, ...stacks[to - 1]];
