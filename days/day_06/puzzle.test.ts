@@ -15,7 +15,11 @@ describe('day 6', () => {
   });
   describe('part 2', () => {
     Deno.test('returns the expected result', () => {
-      assertEquals(calculatePart2(''), -1);
+      assertEquals(calculatePart2('mjqjpqmgbljsphdztnvjfqwrcgsmlb'), 19);
+      assertEquals(calculatePart2('bvwbjplbgvbhsrlpgdmjqwftvncz'), 23);
+      assertEquals(calculatePart2('nppdvjthqldpwncqszvftbrmjlhg'), 23);
+      assertEquals(calculatePart2('nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg'), 29);
+      assertEquals(calculatePart2('zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw'), 26);
     });
   });
 });
