@@ -1,7 +1,7 @@
 # [Advent of Code 2022](https://adventofcode.com/2022)
 
 [![Tests](https://github.com/neogeek/advent-of-code-2022/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/neogeek/advent-of-code-2022/actions/workflows/test.workflow.yml)
-![](https://img.shields.io/badge/advent%20of%20code%202022-10%E2%AD%90%EF%B8%8F-brightgreen)
+![](https://advent-of-code-badge.deno.dev/?username=neogeek)
 
 ## Day
 
