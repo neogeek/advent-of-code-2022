@@ -22,4 +22,6 @@ jobs:
 
       - name: Run tests
         timeout-minutes: 5
-        run: deno test
+        run: |
+          export PATH="~/.deno/bin:$PATH"
+          deno test --allow-read
