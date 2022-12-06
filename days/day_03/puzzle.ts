@@ -1,4 +1,4 @@
-import { chunk } from '../../utils/array.js';
+import { chunk } from '../../utils/array.ts';
 
 const letters = new Array(26)
   .fill(0)

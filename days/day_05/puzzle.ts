@@ -1,5 +1,5 @@
 const createStacksFromInput = (input: string) => {
-  const stacks = [];
+  const stacks: string[][] = [];
 
   input
     .replace(/[ ]{3} /g, '[-]')
@@ -24,15 +24,12 @@ const createStacksFromInput = (input: string) => {
 };
 
 const createInstructionsFromInput = (input: string) => {
-  const instructions = input.split('\n');
-
-  return instructions.map(line => {
-    const [count, from, to] = line
-      .match(/[0-9]+/g)
-      .map(item => parseInt(item, 10));
-
-    return { count, from, to };
-  });
+  return input
+    .split('\n')
+    .map(line =>
+      Array.from(line.match(/[0-9]+/g)?.map(item => parseInt(item)) || [])
+    )
+    .filter(matches => matches.length);
 };
 
 export const calculatePart1 = (input: string) => {
@@ -42,11 +39,13 @@ export const calculatePart1 = (input: string) => {
 
   const instructions = createInstructionsFromInput(inputInstructions);
 
-  instructions.map(({ count, from, to }) => {
+  instructions.map(([count, from, to]) => {
     for (let i = 0; i < count; i += 1) {
       const pickedup = stacks[from - 1].shift();
 
-      stacks[to - 1].unshift(pickedup);
+      if (pickedup) {
+        stacks[to - 1].unshift(pickedup);
+      }
     }
   });
 
@@ -60,7 +59,7 @@ export const calculatePart2 = (input: string) => {
 
   const instructions = createInstructionsFromInput(inputInstructions);
 
-  instructions.map(({ count, from, to }) => {
+  instructions.map(([count, from, to]) => {
     const pickedup = stacks[from - 1].splice(0, count);
 
     stacks[to - 1] = [...pickedup, ...stacks[to - 1]];

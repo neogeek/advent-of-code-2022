@@ -1,18 +1,18 @@
-import { readFileSync } from 'fs';
+import { assertEquals } from 'https://deno.land/std@0.167.0/testing/asserts.ts';
 
-import { calculatePart1, calculatePart2 } from './puzzle';
+import { calculatePart1, calculatePart2 } from './puzzle.ts';
 
-const example = readFileSync('days/day_01/example.txt', 'utf-8');
+const example = Deno.readTextFileSync('days/day_01/example.txt');
 
-describe('day 1', () => {
-  describe('part 1', () => {
-    it('returns the expected result', () => {
-      expect(calculatePart1(example)).toBe(24000);
+Deno.test('day 1', () => {
+  Deno.test('part 1', t => {
+    t.step('returns the expected result', () => {
+      assertEquals(calculatePart1(example), 24000);
     });
   });
-  describe('part 2', () => {
-    it('returns the expected result', () => {
-      expect(calculatePart2(example)).toBe(45000);
+  Deno.test('part 2', t => {
+    t.step('returns the expected result', () => {
+      assertEquals(calculatePart2(example), 45000);
     });
   });
 });

@@ -1,25 +1,35 @@
-import { chunk, containsAny, containsEvery } from './array';
+import {
+  assertArrayIncludes,
+  assertEquals,
+} from 'https://deno.land/std@0.167.0/testing/asserts.ts';
 
-describe('array', () => {
-  describe('chunk', () => {
-    it('groups array into chunks of 3', () => {
+import { chunk, containsAny, containsEvery } from './array.ts';
+
+Deno.test('array', () => {
+  Deno.test('chunk', t => {
+    t.step('groups array into chunks of 3', () => {
       const input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-      expect(chunk(input, 3)).toEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]);
+      assertArrayIncludes(chunk(input, 3), [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [10],
+      ]);
     });
   });
-  describe('contains', () => {
-    it('array1 contains all items in array2', () => {
+  Deno.test('contains', t => {
+    t.step('array1 contains all items in array2', () => {
       const array1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       const array2 = [1, 2, 3, 4];
 
-      expect(containsEvery(array1, array2)).toBeTruthy();
+      assertEquals(containsEvery(array1, array2), true);
     });
-    it('array1 contains some items in array2', () => {
+    t.step('array1 contains some items in array2', () => {
       const array1 = [1, 2, 3];
       const array2 = [1, 2, 3, 4];
 
-      expect(containsAny(array1, array2)).toBeTruthy();
+      assertEquals(containsAny(array1, array2), true);
     });
   });
 });

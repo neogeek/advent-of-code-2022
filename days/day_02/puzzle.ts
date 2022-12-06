@@ -10,20 +10,20 @@ enum Result {
   Lose = 0,
 }
 
-const Mapping = {
+const Mapping: { [key: string]: Hand } = {
   A: Hand.Rock,
   B: Hand.Paper,
   C: Hand.Scissors,
 } as const;
 
-const MappingPart1 = {
+const MappingPart1: { [key: string]: Hand } = {
   ...Mapping,
   X: Hand.Rock,
   Y: Hand.Paper,
   Z: Hand.Scissors,
 } as const;
 
-const MappingPart2 = {
+const MappingPart2: { [key: string]: Hand | Result } = {
   ...Mapping,
   X: Result.Lose,
   Y: Result.Draw,
@@ -70,6 +70,7 @@ export const calculatePart2 = (input: string) => {
           } else if (opponent === Hand.Scissors) {
             return Hand.Paper + result;
           }
+          break;
         case Result.Draw:
           return opponent + result;
         case Result.Win:
@@ -80,6 +81,7 @@ export const calculatePart2 = (input: string) => {
           } else if (opponent === Hand.Scissors) {
             return Hand.Rock + result;
           }
+          break;
       }
       return 0;
     })

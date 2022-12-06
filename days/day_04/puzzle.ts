@@ -1,4 +1,4 @@
-import { chunk, containsAny, containsEvery } from '../../utils/array.js';
+import { chunk, containsAny, containsEvery } from '../../utils/array.ts';
 
 export const calculatePart1 = (input: string) => {
   const ranges = input
