@@ -8,12 +8,12 @@ const example = Deno.readTextFileSync('days/day_07/example.txt');
 describe('day 7', () => {
   describe('part 1', () => {
     Deno.test('returns the expected result', () => {
-      assertEquals(calculatePart1(example), -1);
+      assertEquals(calculatePart1(example), 95437);
     });
   });
   describe('part 2', () => {
     Deno.test('returns the expected result', () => {
-      assertEquals(calculatePart2(example), -1);
+      assertEquals(calculatePart2(example), 24933642);
     });
   });
 });
