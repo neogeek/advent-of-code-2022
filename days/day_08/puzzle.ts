@@ -1,12 +1,6 @@
 import * as mod from 'https://deno.land/std@0.167.0/uuid/mod.ts';
 
-const checkForHeight = (items: { uuid: string; height: number }[]) => {
-  return items.filter((item, index) => {
-    return !items.slice(0, index).some(prev => prev.height >= item.height);
-  });
-};
-
-export const calculatePart1 = (input: string) => {
+const parseTrees = (input: string) => {
   const rows = input
     .trim()
     .split('\n')
@@ -22,6 +16,18 @@ export const calculatePart1 = (input: string) => {
   cols.fill([]).map((_, index) => {
     cols[index] = rows.map(row => row[index]);
   });
+
+  return { rows, cols };
+};
+
+const checkForHeight = (items: { uuid: string; height: number }[]) => {
+  return items.filter((item, index) => {
+    return !items.slice(0, index).some(prev => prev.height >= item.height);
+  });
+};
+
+export const calculatePart1 = (input: string) => {
+  const { rows, cols } = parseTrees(input);
 
   const visible: { uuid: string; height: number }[] = [];
 

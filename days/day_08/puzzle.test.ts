@@ -13,7 +13,7 @@ describe('day 8', () => {
   });
   describe('part 2', () => {
     Deno.test('returns the expected result', () => {
-      assertEquals(calculatePart2(example), -1);
+      assertEquals(calculatePart2(example), 8);
     });
   });
 });
