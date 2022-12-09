@@ -12,7 +12,7 @@
 - [x] [Day 5](days/day_05) ⭐️⭐️
 - [x] [Day 6](days/day_06) ⭐️⭐️
 - [x] [Day 7](days/day_07) ⭐️⭐️
-- [ ] [Day 8](days/day_08) ⭐️
+- [x] [Day 8](days/day_08) ⭐️⭐️
 - [ ] [Day 9](days/day_09)
 - [ ] [Day 10](days/day_10)
 - [ ] [Day 11](days/day_11)
