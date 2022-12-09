@@ -64,20 +64,6 @@ export const calculatePart1 = (input: string) => {
     }
   }
 
-  const uniqueSteps: Step[] = [];
-
-  tailSteps.map(tailStep => {
-    if (
-      !uniqueSteps.some(
-        uniqueStep =>
-          uniqueStep.position.x === tailStep.position.x &&
-          uniqueStep.position.y === tailStep.position.y
-      )
-    ) {
-      uniqueSteps.push(tailStep);
-    }
-  });
-
   return uniqueObject(tailSteps.map(step => step.position)).length;
 };
 
