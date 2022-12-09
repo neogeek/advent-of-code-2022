@@ -6,6 +6,39 @@ interface Step {
   position: Position;
 }
 
+const calculateTailPosition = (
+  position: Position,
+  previousPosition: Position
+) => {
+  if (previousPosition.x - position.x > 1) {
+    if (position.y != previousPosition.y) {
+      position.y = previousPosition.y;
+    }
+    position.x = previousPosition.x - 1;
+  }
+
+  if (previousPosition.x - position.x < -1) {
+    if (position.y != previousPosition.y) {
+      position.y = previousPosition.y;
+    }
+    position.x = previousPosition.x + 1;
+  }
+
+  if (previousPosition.y - position.y > 1) {
+    if (position.x != previousPosition.x) {
+      position.x = previousPosition.x;
+    }
+    position.y = previousPosition.y - 1;
+  }
+
+  if (previousPosition.y - position.y < -1) {
+    if (position.x != previousPosition.x) {
+      position.x = previousPosition.x;
+    }
+    position.y = previousPosition.y + 1;
+  }
+};
+
 export const calculatePart1 = (input: string) => {
   const instructions = input.trim().split('\n');
 
@@ -31,33 +64,7 @@ export const calculatePart1 = (input: string) => {
         currentHeadPosition.y++;
       }
 
-      if (currentHeadPosition.x - currentTailPosition.x > 1) {
-        if (currentTailPosition.y != currentHeadPosition.y) {
-          currentTailPosition.y = currentHeadPosition.y;
-        }
-        currentTailPosition.x = currentHeadPosition.x - 1;
-      }
-
-      if (currentHeadPosition.x - currentTailPosition.x < -1) {
-        if (currentTailPosition.y != currentHeadPosition.y) {
-          currentTailPosition.y = currentHeadPosition.y;
-        }
-        currentTailPosition.x = currentHeadPosition.x + 1;
-      }
-
-      if (currentHeadPosition.y - currentTailPosition.y > 1) {
-        if (currentTailPosition.x != currentHeadPosition.x) {
-          currentTailPosition.x = currentHeadPosition.x;
-        }
-        currentTailPosition.y = currentHeadPosition.y - 1;
-      }
-
-      if (currentHeadPosition.y - currentTailPosition.y < -1) {
-        if (currentTailPosition.x != currentHeadPosition.x) {
-          currentTailPosition.x = currentHeadPosition.x;
-        }
-        currentTailPosition.y = currentHeadPosition.y + 1;
-      }
+      calculateTailPosition(currentTailPosition, currentHeadPosition);
 
       headSteps.push({ position: { ...currentHeadPosition } });
       tailSteps.push({ position: { ...currentTailPosition } });
