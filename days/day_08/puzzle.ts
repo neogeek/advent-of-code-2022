@@ -1,7 +1,9 @@
 import * as mod from 'https://deno.land/std@0.167.0/uuid/mod.ts';
 
+import { sortNumbers, reverse } from '../../utils/array.ts';
+
 interface Tree {
-  uuid: string;
+  uuid?: string;
   height: number;
 }
 
@@ -25,13 +27,13 @@ const parseTrees = (input: string) => {
   return { rows, cols };
 };
 
-const checkForHeight = (items: Tree[]) => {
+export const checkForHeight = (items: Tree[]) => {
   return items.filter((item, index) => {
     return !items.slice(0, index).some(prev => prev.height >= item.height);
   });
 };
 
-const checkForDistance = (items: Tree[], height: number) => {
+export const checkForDistance = (items: Tree[], height: number) => {
   const tallerTrees = items.findIndex(item => item.height >= height);
 
   if (tallerTrees === -1) return items.length;
@@ -46,12 +48,12 @@ export const calculatePart1 = (input: string) => {
 
   rows.map(row => {
     checkForHeight(row).map(item => visible.push(item));
-    checkForHeight([...row].reverse()).map(item => visible.push(item));
+    checkForHeight(reverse(row)).map(item => visible.push(item));
   }, 0);
 
-  cols.map(l => {
-    checkForHeight(l).map(item => visible.push(item));
-    checkForHeight([...l].reverse()).map(item => visible.push(item));
+  cols.map(col => {
+    checkForHeight(col).map(item => visible.push(item));
+    checkForHeight(reverse(col)).map(item => visible.push(item));
   }, 0);
 
   return Array.from(new Set(visible)).length;
@@ -77,20 +79,22 @@ export const calculatePart2 = (input: string) => {
       );
 
       const right = checkForDistance(
-        [...rows[rowIndex]].reverse().slice(colIndex + 1),
+        reverse(rows[rowIndex]).slice(colIndex + 1),
         item.height
       );
 
       const bottom = checkForDistance(
-        [...cols[colIndex]].reverse().slice(rowIndex + 1),
+        reverse(cols[colIndex]).slice(rowIndex + 1),
         item.height
       );
 
       const score = top * left * right * bottom;
 
-      scores.push(score);
+      if (score) {
+        scores.push(score);
+      }
     })
   );
 
-  return [...scores.sort()].reverse()[0];
+  return reverse(sortNumbers(scores))[0];
 };
