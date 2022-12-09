@@ -1,5 +1,7 @@
 import type { Position } from '../../types.ts';
 
+import { uniqueObject } from '../../utils/array.ts';
+
 interface Step {
   position: Position;
 }
@@ -76,7 +78,7 @@ export const calculatePart1 = (input: string) => {
     }
   });
 
-  return uniqueSteps.length;
+  return uniqueObject(tailSteps.map(step => step.position)).length;
 };
 
 export const calculatePart2 = (input: string) => {
