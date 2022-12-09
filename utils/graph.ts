@@ -20,7 +20,7 @@ export const plotGraph = (positions: Position[], fill = '#') => {
   map.max.y += map.offset.y;
 
   const graph: string[][] = new Array(map.max.y + 1)
-    .fill('')
+    .fill(null)
     .map(() => new Array(map.max.x + 1).fill('.'));
 
   positions.map(position => {
