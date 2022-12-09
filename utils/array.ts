@@ -23,3 +23,27 @@ export const sortStrings = (array: string[]) =>
   array.sort((a, b) => a.localeCompare(b));
 
 export const reverse = <T>(array: T[]) => [...array].reverse();
+
+export const unique = <T>(array: T[]) => Array.from(new Set(array));
+
+export const uniqueObject = <T>(array: { [key: string]: T }[]) => {
+  const tempArray: { [key: string]: T }[] = [];
+
+  array.map(item => {
+    if (
+      !tempArray.some(temp => {
+        const keysItem = Object.keys(item);
+        const keysTemp = Object.keys(temp);
+
+        return (
+          keysItem.every(k => keysTemp.includes(k)) &&
+          keysItem.every(k => item[k] === temp[k])
+        );
+      })
+    ) {
+      tempArray.push(item);
+    }
+  });
+
+  return tempArray;
+};
