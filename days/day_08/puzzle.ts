@@ -69,22 +69,22 @@ export const calculatePart2 = (input: string) => {
       const item = rows[rowIndex][colIndex];
 
       const top = checkForDistance(
-        cols[colIndex].slice(0, rowIndex),
+        reverse(cols[colIndex].slice(0, rowIndex)),
         item.height
       );
 
       const left = checkForDistance(
-        rows[rowIndex].slice(0, colIndex),
+        reverse(rows[rowIndex].slice(0, colIndex)),
         item.height
       );
 
       const right = checkForDistance(
-        reverse(rows[rowIndex]).slice(colIndex + 1),
+        rows[rowIndex].slice(colIndex + 1),
         item.height
       );
 
       const bottom = checkForDistance(
-        reverse(cols[colIndex]).slice(rowIndex + 1),
+        cols[colIndex].slice(rowIndex + 1),
         item.height
       );
 

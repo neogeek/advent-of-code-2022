@@ -51,6 +51,8 @@ describe('day 8', () => {
         ),
         4
       );
+      assertEquals(checkForDistance([{ height: 7 }], 7), 1);
+      assertEquals(checkForDistance([], 7), 0);
     });
   });
 });
