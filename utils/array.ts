@@ -16,3 +16,10 @@ export const containsEvery = <T>(array1: T[], array2: T[]) =>
 
 export const containsAny = <T>(array1: T[], array2: T[]) =>
   array2.some(item => array1.includes(item));
+
+export const sortNumbers = (array: number[]) => array.sort((a, b) => a - b);
+
+export const sortStrings = (array: string[]) =>
+  array.sort((a, b) => a.localeCompare(b));
+
+export const reverse = <T>(array: T[]) => [...array].reverse();
