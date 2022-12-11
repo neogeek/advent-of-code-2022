@@ -14,7 +14,7 @@ export const calculatePart1 = (input: string) => {
       cycles.push(0);
     } else if (step === 'addx') {
       cycles.push(0);
-      cycles.push(parseInt(value));
+      cycles.push(parseInt(value, 10));
     }
   });
 
