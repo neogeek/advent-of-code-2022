@@ -3,9 +3,9 @@ export const calculatePart1 = (input: string) => {
 
   let x = 1;
 
-  let cycles: number[] = [];
+  const cycles: number[] = [0];
 
-  let signalStrengths: number[] = [];
+  const signalStrengths: number[] = [];
 
   instructions.map(instruction => {
     const [step, value] = instruction.split(' ');
