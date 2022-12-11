@@ -1,6 +1,7 @@
 import type { Position } from '../../types.ts';
 
 import { uniqueObject } from '../../utils/array.ts';
+import { flipGraph, plotGraph } from '../../utils/graph.ts';
 
 interface Step {
   position: Position;
@@ -39,14 +40,19 @@ const calculateTailPosition = (
   }
 };
 
-export const calculatePart1 = (input: string) => {
-  const instructions = input.trim().split('\n');
-
+const calculateRopePositions = (instructions: string[], tailLength = 1) => {
   const currentHeadPosition: Position = { x: 0, y: 0 };
-  const currentTailPosition: Position = { x: 0, y: 0 };
+  const currentTailPositions: Position[] = new Array(tailLength)
+    .fill(null)
+    .map(() => ({
+      x: 0,
+      y: 0,
+    }));
 
-  const headSteps: Step[] = [{ position: { ...currentTailPosition } }];
-  const tailSteps: Step[] = [{ position: { ...currentTailPosition } }];
+  const headSteps: Step[] = [{ position: { ...currentHeadPosition } }];
+  const tailSteps: Step[] = new Array(currentTailPositions.length)
+    .fill(null)
+    .map((_, index) => ({ position: currentTailPositions[index], index }));
 
   for (let i = 0; i < instructions.length; i += 1) {
     const [direction, numSteps] = instructions[i].split(' ');
@@ -64,16 +70,41 @@ export const calculatePart1 = (input: string) => {
         currentHeadPosition.y++;
       }
 
-      calculateTailPosition(currentTailPosition, currentHeadPosition);
+      currentTailPositions.map((_, index) => {
+        calculateTailPosition(
+          currentTailPositions[index],
+          index ? currentTailPositions[index - 1] : currentHeadPosition
+        );
+      });
 
       headSteps.push({ position: { ...currentHeadPosition } });
-      tailSteps.push({ position: { ...currentTailPosition } });
+
+      currentTailPositions.map(currentTailPosition =>
+        tailSteps.push({ position: { ...currentTailPosition } })
+      );
     }
   }
 
-  return uniqueObject(tailSteps.map(step => step.position)).length;
+  return tailSteps.map(step => step.position);
+};
+
+export const calculatePart1 = (input: string) => {
+  const instructions = input.trim().split('\n');
+
+  const positions = calculateRopePositions(instructions, 1);
+
+  // console.log(flipGraph(plotGraph(positions)));
+
+  return uniqueObject(positions).length;
 };
 
 export const calculatePart2 = (input: string) => {
-  return 0;
+  const instructions = input.trim().split('\n');
+
+  const positions = calculateRopePositions(instructions, 1);
+  // const positions = calculateRopePositions(instructions, 9);
+
+  // console.log(flipGraph(plotGraph(positions)));
+
+  return uniqueObject(positions).length;
 };
