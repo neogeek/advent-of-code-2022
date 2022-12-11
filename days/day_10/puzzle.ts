@@ -21,8 +21,8 @@ export const calculatePart1 = (input: string) => {
   cycles.map((cycle, index) => {
     x += cycle;
 
-    if ([20, 60, 100, 140, 180, 220].includes(index + 1)) {
-      signalStrengths.push((index + 1) * x);
+    if (index === 20 || !((index - 20) % 40)) {
+      signalStrengths.push(index * x);
     }
   }, 0);
 
