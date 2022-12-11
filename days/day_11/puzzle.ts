@@ -1,13 +1,24 @@
 type Operation = '+' | '-' | '*' | '/';
 
+interface InstructionGroup {
+  investigatedCount: number;
+  monkeyIndex: number;
+  startingItems: number[];
+  assertTrueMonkeyIndex: number;
+  assertFalseMonkeyIndex: number;
+  testDivisbleBy: number;
+  operation: string[];
+  test: (values: number[], operation: Operation) => number | undefined;
+}
+
 const findLineAndReturnNumbers = (array: string[], pattern: RegExp) => {
   return Array.from(
     array.find(item => item.match(pattern))?.match(/[0-9]+/g) || []
   ).map(item => parseInt(item));
 };
 
-export const calculatePart1 = (input: string) => {
-  const instructionGroups = input
+const parseInstructions = (input: string) => {
+  return input
     .trim()
     .split(/\n\n/)
     .map(group => {
@@ -51,59 +62,69 @@ export const calculatePart1 = (input: string) => {
         },
       };
     });
+};
+
+const caluclateWorryFromInstructionGroups = (
+  instructionGroups: InstructionGroup[]
+) => {
+  return instructionGroups.map(instruction => {
+    //   console.log(`Monkey ${instruction.monkeyIndex}`);
+
+    [...instruction.startingItems].map(() => {
+      const leftSideOfOperation = instruction.startingItems.shift() as number;
+
+      instruction.investigatedCount++;
+
+      const rightSideOfOperation = instruction.operation[2]
+        ? parseInt(instruction.operation[2])
+        : leftSideOfOperation;
+
+      let updatedItem = instruction.test(
+        [leftSideOfOperation, rightSideOfOperation],
+        instruction.operation[1] as Operation
+      );
+
+      // console.log(`\tMonkey inspects an item with a worry level of ${item}.`);
+      // console.log(
+      //   `\t\tWorry level is ${instruction.operation[1]} by ${rightSideOfOperation} to ${updatedItem}.`
+      // );
+
+      updatedItem = Math.floor((updatedItem as number) / 3);
+
+      // console.log(
+      //   `\t\tMonkey gets bored with item. Worry level is divided by 3 to ${updatedItem}.`
+      // );
+
+      if (updatedItem % instruction.testDivisbleBy === 0) {
+        //   console.log(
+        //     `\t\tCurrent worry level is divisible by ${instruction.testDivisbleBy}.`
+        //   );
+
+        instructionGroups
+          .find(
+            group => group.monkeyIndex === instruction.assertTrueMonkeyIndex
+          )
+          ?.startingItems.push(updatedItem);
+      } else {
+        //   console.log(
+        //     `\t\tCurrent worry level is not divisible by ${instruction.testDivisbleBy}.`
+        //   );
+
+        instructionGroups
+          .find(
+            group => group.monkeyIndex === instruction.assertFalseMonkeyIndex
+          )
+          ?.startingItems.push(updatedItem);
+      }
+    });
+  });
+};
+
+export const calculatePart1 = (input: string) => {
+  const instructionGroups = parseInstructions(input);
 
   for (let i = 0; i < 20; i += 1) {
-    instructionGroups.map(instruction => {
-      //   console.log(`Monkey ${instruction.monkeyIndex}`);
-
-      [...instruction.startingItems].map(item => {
-        const leftSideOfOperation = instruction.startingItems.shift() as number;
-
-        instruction.investigatedCount++;
-
-        const rightSideOfOperation = instruction.operation[2]
-          ? parseInt(instruction.operation[2])
-          : leftSideOfOperation;
-
-        let updatedItem = instruction.test(
-          [leftSideOfOperation, rightSideOfOperation],
-          instruction.operation[1] as Operation
-        );
-
-        // console.log(`\tMonkey inspects an item with a worry level of ${item}.`);
-        // console.log(
-        //   `\t\tWorry level is ${instruction.operation[1]} by ${rightSideOfOperation} to ${updatedItem}.`
-        // );
-
-        updatedItem = Math.floor((updatedItem as number) / 3);
-
-        // console.log(
-        //   `\t\tMonkey gets bored with item. Worry level is divided by 3 to ${updatedItem}.`
-        // );
-
-        if (updatedItem % instruction.testDivisbleBy === 0) {
-          //   console.log(
-          //     `\t\tCurrent worry level is divisible by ${instruction.testDivisbleBy}.`
-          //   );
-
-          instructionGroups
-            .find(
-              group => group.monkeyIndex === instruction.assertTrueMonkeyIndex
-            )
-            ?.startingItems.push(updatedItem);
-        } else {
-          //   console.log(
-          //     `\t\tCurrent worry level is not divisible by ${instruction.testDivisbleBy}.`
-          //   );
-
-          instructionGroups
-            .find(
-              group => group.monkeyIndex === instruction.assertFalseMonkeyIndex
-            )
-            ?.startingItems.push(updatedItem);
-        }
-      });
-    });
+    caluclateWorryFromInstructionGroups(instructionGroups);
   }
 
   return instructionGroups
