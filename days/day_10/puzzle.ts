@@ -19,11 +19,11 @@ export const calculatePart1 = (input: string) => {
   });
 
   cycles.map((cycle, index) => {
-    x += cycle;
-
     if (index === 20 || !((index - 20) % 40)) {
       signalStrengths.push(index * x);
     }
+
+    x += cycle;
   });
 
   return signalStrengths.reduce((prev, cur) => prev + cur, 0);
