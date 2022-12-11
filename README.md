@@ -15,7 +15,7 @@
 - [x] [Day 8](days/day_08) ⭐️⭐️
 - [ ] [Day 9](days/day_09) ⭐️
 - [ ] [Day 10](days/day_10) ⭐️
-- [ ] [Day 11](days/day_11)
+- [ ] [Day 11](days/day_11) ⭐️
 - [ ] [Day 12](days/day_12)
 - [ ] [Day 13](days/day_13)
 - [ ] [Day 14](days/day_14)
