@@ -24,7 +24,7 @@ export const calculatePart1 = (input: string) => {
     if (index === 20 || !((index - 20) % 40)) {
       signalStrengths.push(index * x);
     }
-  }, 0);
+  });
 
   return signalStrengths.reduce((prev, cur) => prev + cur, 0);
 };
